@@ -2,18 +2,25 @@ package main
 
 import (
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/mileusna/crontab"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
+	"os"
+	"os/signal"
 	"strings"
-	"time"
-
-	"github.com/PuerkitoBio/goquery"
-	"github.com/mileusna/crontab"
+	"syscall"
 )
 
-var lineToken = "YOURTOKEN"
+const (
+	endPoint = "https://notify-api.line.me/api/notify"
+	baacEndPoint = "https://www.baac.or.th/salak/content-lotto.php?lotto_group=%s&start_no=%s&stop_no=%s&inside=7"
+
+	lineToken = "YOURTOKEN"
+)
+
 var lottoNumber []string
 
 func main() {
@@ -21,11 +28,14 @@ func main() {
 
 	ctab := crontab.New()
 	ctab.MustAddJob("* 18 16 * *", sendNotify, lottoNumber)
-	time.Sleep(10 * time.Minute)
+
+	stop := make(chan os.Signal)
+	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
+	<-stop
 }
 
 func getLottoResult(lottoGroup, startNo, stopNo string) string {
-	endpoint := fmt.Sprintf("https://www.baac.or.th/salak/content-lotto.php?lotto_group=%s&start_no=%s&stop_no=%s&inside=7", lottoGroup, startNo, stopNo)
+	endpoint := fmt.Sprintf(baacEndPoint, lottoGroup, startNo, stopNo)
 	resp, err := http.Get(endpoint)
 	if err != nil {
 		log.Fatal(err)
@@ -45,11 +55,8 @@ func getLottoResult(lottoGroup, startNo, stopNo string) string {
 	return result
 }
 
-func sendNotify(message []string) {
-	endpoint := "https://notify-api.line.me/api/notify"
-	client := http.Client{}
-
-	msg := ""
+func sendNotify() error {
+	var msg string
 	for _, m := range lottoNumber {
 		msg += m + "\n"
 	}
@@ -57,24 +64,21 @@ func sendNotify(message []string) {
 	form := url.Values{}
 	form.Add("message", "\nยอดเงินรางวัลที่ได้ทั้งหมด: "+msg)
 
-	req, err := http.NewRequest("POST", endpoint, strings.NewReader(form.Encode()))
+	req, err := http.NewRequest("POST", endPoint, strings.NewReader(form.Encode()))
+	if err != nil {
+		return err
+	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Set("Authorization", "Bearer "+lineToken)
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Fatal(err)
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	defer resp.Body.Close()
-
-	bodyResp, err := ioutil.ReadAll(resp.Body)
+	_, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-
-	log.Println(string(bodyResp))
+	return nil
 }
