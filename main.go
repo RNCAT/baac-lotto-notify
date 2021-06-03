@@ -32,7 +32,7 @@ func main() {
 	ctab := crontab.New()
 	// ctab.MustAddJob("* 18 16 * *", sendNotify, lottoNumber)
 	// ctab.MustAddJob("30 7 * * *", sendNotify)
-	ctab.MustAddJob("10 */3 * * *", sendNotify)
+	ctab.MustAddJob("10 */1 * * *", sendNotify)
 
 	stop := make(chan os.Signal)
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
