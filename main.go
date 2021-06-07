@@ -13,26 +13,29 @@ import (
 	"syscall"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/joho/godotenv"
 	"github.com/mileusna/crontab"
 )
 
 const (
 	endPoint     = "https://notify-api.line.me/api/notify"
 	baacEndPoint = "https://www.baac.or.th/salak/content-lotto.php?lotto_group=%s&start_no=%s&stop_no=%s&inside=7"
-
-	lineToken = "rfCPhY98Umu4gNYdogxCvVKKwiKsq8QeV2GQK8dJDud"
 )
 
+var Token = os.Getenv("LINE_TOKEN")
 var lottoNumber []string
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	lottoNumber = append(lottoNumber, getLottoResult("33", "9016879", "9017378"))
 	lottoNumber = append(lottoNumber, getLottoResult("34", "2058188", "2058687"))
 
 	ctab := crontab.New()
-	// ctab.MustAddJob("* 18 16 * *", sendNotify, lottoNumber)
-	// ctab.MustAddJob("30 7 * * *", sendNotify)
-	ctab.MustAddJob("10 */1 * * *", sendNotify)
+	ctab.MustAddJob("* 18 17 * *", sendNotify)
 
 	stop := make(chan os.Signal)
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
@@ -76,7 +79,7 @@ func sendNotify() error {
 		return err
 	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("Authorization", "Bearer "+lineToken)
+	req.Header.Set("Authorization", "Bearer "+Token)
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
