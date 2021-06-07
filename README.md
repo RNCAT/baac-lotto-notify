@@ -4,9 +4,9 @@
 
 ### วิธีใช้งาน
 
-ใส่ Line Token (กดรับ -> [LINE Notify](https://notify-bot.line.me/en/))
-```go 
-var lineToken = "YOURTOKEN"
+สร้างไฟล์ .env และใส่ Line Token (กดรับ -> [LINE Notify](https://notify-bot.line.me/en/))
+```.env 
+LINE_TOKEN = YOURTOKEN
 ```
 ใส่ค่าให้ครบ [lottoGroup](#lottogroup), startNo, stopNo
 ```go
