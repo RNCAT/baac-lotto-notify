@@ -10,7 +10,7 @@
     "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
-    "node-schedule": "^2.0.0"
+    "node-cron": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"

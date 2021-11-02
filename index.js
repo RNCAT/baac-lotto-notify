@@ -1,12 +1,9 @@
 require('dotenv').config()
-const schedule = require('node-schedule')
+const cron = require('node-cron')
 const getLotto = require('./src/lotto')
 const sendNotify = require('./src/line')
-const rule = new schedule.RecurrenceRule()
-rule.hour = 7
-rule.tz = 'Asia/Bangkok'
 
-schedule.scheduleJob(rule, async () => {
+cron.schedule('*/2 * * * *', () => {
   let lottoList = [
     {
       lottoGroup: 33,
