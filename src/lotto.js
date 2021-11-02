@@ -10,7 +10,7 @@ const getLotto = async (lottoList) => {
   let ResultList = []
 
   for (let i = 0; i < lottoList.length; i++) {
-    const URL = `https://www.baac.or.th/salak/content-lotto.php?lotto_group=${lottoList[i].lottoGroup}&start_no=${lottoList[i].startNo}&stop_no=${lottoList[i].stopNo}&inside=7`
+    const URL = `http://www.baac.or.th/salak/content-lotto.php?lotto_group=${lottoList[i].lottoGroup}&start_no=${lottoList[i].startNo}&stop_no=${lottoList[i].stopNo}&inside=7`
     const { data } = await axios.get(URL, { httpsAgent: agent })
 
     const result = {

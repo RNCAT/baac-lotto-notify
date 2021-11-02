@@ -3,7 +3,7 @@ const cron = require('node-cron')
 const getLotto = require('./src/lotto')
 const sendNotify = require('./src/line')
 
-cron.schedule('*/2 * * * *', () => {
+cron.schedule('* */1 * * *', async () => {
   let lottoList = [
     {
       lottoGroup: 33,
