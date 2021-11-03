@@ -1,7 +1,6 @@
-FROM golang:1.16.4-alpine AS build
+FROM node:16.13.0-alpine
 RUN mkdir /app
 ADD . /app
 WORKDIR /app
-RUN go mod download
-RUN go build -o main .
-CMD ["/app/main"]
+RUN npm install
+CMD [ "npm", "start" ]
