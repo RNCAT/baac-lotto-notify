@@ -1,20 +1,30 @@
 # BaacLotto-Notify
 ระบบแจ้งเตือนผลสลาก ธกส.
-โดยจะส่งแจ้งเตือนทุกวันที่ 16
+โดยจะส่งแจ้งเตือนทุกวันที่ 17
 
 ### วิธีใช้งาน
 
-สร้างไฟล์ .env และใส่ Line Token (กดรับ -> [LINE Notify](https://notify-bot.line.me/en/))
+- สร้างไฟล์ .env และใส่ Line Token (กดรับ -> [LINE Notify](https://notify-bot.line.me/en/))
+- สมัคร Cronitor และนำ API key มาใส่ในไฟล์ .env [Cronitor](https://cronitor.io/)
 ```.env 
-LINE_TOKEN = YOURTOKEN
+LINE_TOKEN = "xxxxxxx"
+CRONNITOR_TOKEN = "xxxxxxx"
 ```
-ใส่ค่าให้ครบ [lottoGroup](#lottogroup), startNo, stopNo
-```go
-lottoNumber = append(lottoNumber, getLottoResult("lottoGroup", "startNo", "stopNo"))
-```
-ถ้ามีสลากหลายใบสามารถเพิ่มได้แบบนี้
-```go
-lottoNumber = append(lottoNumber, getLottoResult("lottoGroup", "startNo", "stopNo"), getLottoResult("lottoGroup", "startNo", "stopNo"))
+
+แก้ไขตัวแปร lottoList ถ้ามีหลายใบให้ใส่ต่อไปเรื่อย ๆ ตามตัวอย่าง [lottoGroup](#lottogroup), startNo, stopNo
+```js
+  let lottoList = [
+    {
+      lottoGroup: 33,
+      startNo: 9016879,
+      stopNo: 9017378,
+    },
+    {
+      lottoGroup: 34,
+      startNo: 2058188,
+      stopNo: 2058687,
+    },
+  ]
 ```
 
 <h3 id="lottogroup">เลข lottoGroup</h3>
