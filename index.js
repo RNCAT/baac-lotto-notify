@@ -6,7 +6,7 @@ const sendNotify = require('./src/line')
 
 cron.wraps(nodeCron)
 
-cron.schedule('SendLottoNotify', '1 */1 * * *', async () => {
+cron.schedule('SendLottoNotify', '0 */6 17 * *', async () => {
   let lottoList = [
     {
       lottoGroup: 33,
