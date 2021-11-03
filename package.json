@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
+    "cronitor": "^2.2.3",
     "dotenv": "^10.0.0",
     "node-cron": "^3.0.0"
   },

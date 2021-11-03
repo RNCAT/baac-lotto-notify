@@ -1,9 +1,12 @@
 require('dotenv').config()
-const cron = require('node-cron')
+const cron = require('cronitor')(`${process.env.CRONNITOR_TOKEN}`)
+const nodeCron = require('node-cron')
 const getLotto = require('./src/lotto')
 const sendNotify = require('./src/line')
 
-cron.schedule('* */1 * * *', async () => {
+cron.wraps(nodeCron)
+
+cron.schedule('SendLottoNotify', '1 */1 * * *', async () => {
   let lottoList = [
     {
       lottoGroup: 33,
