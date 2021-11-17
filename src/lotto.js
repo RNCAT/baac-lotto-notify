@@ -3,7 +3,7 @@ const cheerio = require('cheerio')
 const https = require('https')
 
 const getLotto = async (lottoList) => {
-  const agent = new https.Agent({
+  const agent = https.Agent({
     rejectUnauthorized: false,
   })
 
