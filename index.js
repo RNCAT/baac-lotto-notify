@@ -9,11 +9,6 @@ cron.wraps(nodeCron)
 cron.schedule('SendLottoNotify', '0 */6 17 * *', async () => {
   let lottoList = [
     {
-      lottoGroup: 33,
-      startNo: 9016879,
-      stopNo: 9017378,
-    },
-    {
       lottoGroup: 34,
       startNo: 2058188,
       stopNo: 2058687,
