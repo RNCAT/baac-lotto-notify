@@ -4,30 +4,32 @@
 
 ### วิธีใช้งาน
 
-- สร้างไฟล์ .env และใส่ Line Token (กดรับ -> [LINE Notify](https://notify-bot.line.me/en/))
-- สมัคร Cronitor และนำ API key มาใส่ในไฟล์ .env [Cronitor](https://cronitor.io/)
-```.env 
-LINE_TOKEN = "xxxxxxx"
-CRONNITOR_TOKEN = "xxxxxxx"
-```
+- แก้ไขไฟล์ config.json
+- สมัคร Cronitor และนำ API key มาใส่ [Cronitor](https://cronitor.io/)
+- ใส่ Line Token [LINE Notify](https://notify-bot.line.me/en/)
+- ใส่ข้อมูลสลากลงใน lottoList
 
-แก้ไขตัวแปร lottoList ถ้ามีหลายใบให้ใส่ต่อไปเรื่อย ๆ ตามตัวอย่าง [lottoGroup](#lottogroup), startNo, stopNo
-```js
-  let lottoList = [
+```json
+{
+  "CRONNITOR_TOKEN": "YOUR_CRONNITOR_TOKEN",
+  "LINE_TOKEN": "YOUR_LINE_NOTIFY_TOKEN",
+  "lottoList": [
     {
-      lottoGroup: 33,
-      startNo: 9016879,
-      stopNo: 9017378,
+      "lottoGroup": 34,
+      "startNo": 2058188,
+      "stopNo": 2058687
     },
     {
-      lottoGroup: 34,
-      startNo: 2058188,
-      stopNo: 2058687,
-    },
+      "lottoGroup": 00,
+      "startNo": 0000000,
+      "stopNo": 0000000
+    }
   ]
+}
+
 ```
 
-<h3 id="lottogroup">เลข lottoGroup</h3>
+### เลข lottoGroup
 
 - 36 = สลากทวีสิน เกษตรมั่นคง 3 (RA-RT)
 - 35 = สลากออมทรัพย์เกษตรยั่งยืน
