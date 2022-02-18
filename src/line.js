@@ -1,3 +1,4 @@
+const config = require('../config.json')
 const axios = require('axios')
 const qs = require('querystring')
 
@@ -10,7 +11,7 @@ const sendNotify = async (lotto) => {
     const sendLine = await axios.post(URL, qs.stringify({ message }), {
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
-        Authorization: `Bearer ${process.env.LINE_TOKEN}`,
+        Authorization: `Bearer ${config.LINE_TOKEN}`,
       },
     })
 

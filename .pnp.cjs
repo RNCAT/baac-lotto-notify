@@ -38,7 +38,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.24.0"],
             ["cheerio", "npm:1.0.0-rc.10"],
             ["cronitor", "npm:2.2.3"],
-            ["dotenv", "npm:10.0.0"],
             ["node-cron", "npm:3.0.0"],
             ["nodemon", "npm:2.0.14"]
           ],
@@ -278,7 +277,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.24.0"],
             ["cheerio", "npm:1.0.0-rc.10"],
             ["cronitor", "npm:2.2.3"],
-            ["dotenv", "npm:10.0.0"],
             ["node-cron", "npm:3.0.0"],
             ["nodemon", "npm:2.0.14"]
           ],
@@ -758,15 +756,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["dot-prop", "npm:5.3.0"],
             ["is-obj", "npm:2.0.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["dotenv", [
-        ["npm:10.0.0", {
-          "packageLocation": "./.yarn/cache/dotenv-npm-10.0.0-36b272df25-f412c5fe8c.zip/node_modules/dotenv/",
-          "packageDependencies": [
-            ["dotenv", "npm:10.0.0"]
           ],
           "linkType": "HARD",
         }]

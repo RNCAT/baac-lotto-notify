@@ -1,0 +1,11 @@
+{
+  "CRONNITOR_TOKEN": "",
+  "LINE_TOKEN": "",
+  "lottoList": [
+    {
+      "lottoGroup": 34,
+      "startNo": 2058188,
+      "stopNo": 2058687
+    }
+  ]
+}
