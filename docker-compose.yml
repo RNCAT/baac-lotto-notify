@@ -1,0 +1,9 @@
+version: "3"
+services:
+  baac-lotto-notify:
+    build: .
+    container_name: baac-lotto-notify
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./.env
