@@ -21,3 +21,6 @@ typings/index.js
 
 # Environments
 .env
+
+# Build
+dist/
