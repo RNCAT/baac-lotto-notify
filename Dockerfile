@@ -1,5 +1,6 @@
 FROM node:16-alpine AS build
 WORKDIR /app
+RUN apk update && apk add --no-cache tzdata
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY . .
