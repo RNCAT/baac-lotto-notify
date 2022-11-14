@@ -3,6 +3,8 @@ services:
   baac-lotto-notify:
     build: .
     container_name: baac-lotto-notify
+    cap_add:
+      - SYS_ADMIN
     environment:
       - NODE_ENV=production
       - TZ=Asia/Bangkok
