@@ -2,6 +2,8 @@
 ระบบแจ้งเตือนผลสลาก ธกส.
 โดยจะส่งแจ้งเตือนทุกวันที่ 17
 
+> This project was discontinued because they have this feature in [mobile application](https://play.google.com/store/apps/details?id=com.ccpp.baac).
+
 ### วิธีใช้งาน
 
 - แก้ไขไฟล์ config.json
